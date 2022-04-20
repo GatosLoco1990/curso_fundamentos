@@ -20,5 +20,7 @@ public class Principal {
 
             }
         }
+
+        teclado.close();
     }
 }
