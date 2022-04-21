@@ -1,3 +1,4 @@
+import clases.Ubicacion;
 import clases.Zombie;
 import java.util.Scanner;
 import java.util.Date;
@@ -14,12 +15,20 @@ public class Principal {
         int n;
         int a = 0;
         int i = 3;
+        int k = 3;
         String nada;
+        int posicion, datoaño;
+        String fecha, dia, mes, año;
 
         Zombie[] arr = new Zombie[100];
         arr[0] = new Zombie("Ricardo", 12, "05/12/2004", "A+");
         arr[1] = new Zombie("Laura", 56, "02/05/2003", "AB");
         arr[2] = new Zombie("Samuel", 46, "12/11/2005", "O-");
+
+        Ubicacion[] ubi = new Ubicacion[100];
+        ubi[0] = new Ubicacion("Cúcuta", 250, 500);
+        ubi[1] = new Ubicacion("Medellín", 460, 1200);
+        ubi[2] = new Ubicacion("Pamplona", 670, 4500);
 
         while (a == 0) {
             System.out.println("Ingrese un dígito del 1 al 9");
@@ -72,12 +81,41 @@ public class Principal {
 
                     break;
                 case 5:
+                    for (int j = 0; j <= i - 1; j++) {
+                        fecha = arr[j].getFecha_nac();
+                        posicion = fecha.indexOf("/");
+                        dia = fecha.substring(0, posicion);
+                        fecha = fecha.substring(posicion + 1);
+                        posicion = fecha.indexOf("/");
+                        mes = fecha.substring(0, posicion);
+                        fecha = fecha.substring(posicion + 1);
+                        año = fecha;
+
+                        datoaño = Integer.parseInt(año);
+                        if (datoaño > 2000) {
+                            MostrarZombie(arr, j);
+                        }
+
+                    }
 
                     break;
                 case 6:
                     for (int j = 0; j <= i - 1; j++) {
                         arr[j].setSalud(arr[j].getSalud() / 2);
                     }
+                    break;
+                case 7:
+                    System.out.println("Ingrese el nombre, distancia y cantidad de zombies de le ubicación: ");
+                    System.out.println("Ingrese el nombre: ");
+                    String nom = teclado.next();
+                    System.out.println("Ingrese la distancia: ");
+                    Float distancia = teclado.nextFloat();
+                    System.out.println("Ingrese cantidad de zombies: ");
+                    int cant = teclado.nextInt();
+
+                    ubi[k] = new Ubicacion(nom, distancia, cant);
+                    k++;
+                    BorrarPantalla();
                     break;
 
             }

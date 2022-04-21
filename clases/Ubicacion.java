@@ -5,6 +5,12 @@ public class Ubicacion {
     private float distancia;
     private int cant;
 
+    public Ubicacion(String nom, float distancia, int cant) {
+        this.nombre = nom;
+        this.distancia = distancia;
+        this.cant = cant;
+    }
+
     public String getNombre() {
         return nombre;
     }
