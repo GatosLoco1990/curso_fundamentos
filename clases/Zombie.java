@@ -2,8 +2,24 @@ package clases;
 
 public class Zombie {
     private String nombre;
+    private int salud;
     private String fecha_nac;
     private String tipo_sang;
+
+    public Zombie(String nombre, int salud, String fenac, String sang) {
+        this.nombre = nombre;
+        this.salud = salud;
+        this.fecha_nac = fenac;
+        this.tipo_sang = sang;
+    }
+
+    public int getSalud() {
+        return salud;
+    }
+
+    public void setSalud(int salud) {
+        this.salud = salud;
+    }
 
     public String getNombre() {
         return nombre;
