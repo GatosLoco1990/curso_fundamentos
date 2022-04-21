@@ -13,9 +13,14 @@ public class Principal {
 
         int n;
         int a = 0;
-        int i = 0;
+        int i = 3;
+        String nada;
 
         Zombie[] arr = new Zombie[100];
+        arr[0] = new Zombie("Ricardo", 12, "05/12/2004", "A+");
+        arr[1] = new Zombie("Laura", 56, "02/05/2003", "AB");
+        arr[2] = new Zombie("Samuel", 46, "12/11/2005", "O-");
+
         while (a == 0) {
             System.out.println("Ingrese un dígito del 1 al 9");
             n = teclado.nextInt();
@@ -30,7 +35,7 @@ public class Principal {
                     String nombre = teclado.next();
                     System.out.println("Ingrese la salud: ");
                     int salud = teclado.nextInt();
-                    System.out.println("Ingrese fecha de nacimiento: ");
+                    System.out.println("Ingrese fecha de nacimiento (en formato 'DD/MM/YYYY'): ");
                     String fenac = teclado.next();
                     System.out.println("Ingrese el tipo de sangre: ");
                     String sang = teclado.next();
@@ -45,12 +50,21 @@ public class Principal {
                         MostrarZombie(arr, j);
                     }
                     System.out.println("Digite cualquier cosa");
-                    String nada = teclado.next();
+                    nada = teclado.next();
+                    BorrarPantalla();
+
+                    break;
+                case 3:
+                    for (int j = 3; j <= i - 1; j++) {
+                        MostrarZombie(arr, j);
+                    }
+                    System.out.println("Digite cualquier cosa");
+                    nada = teclado.next();
                     BorrarPantalla();
 
                     break;
                 case 4:
-                    for (int j = 0; i - 1 <= i; j++) {
+                    for (int j = 0; j <= i - 1; j++) {
                         if (arr[j].getTipo_sang().equals("O+") || arr[j].getTipo_sang().equals("AB")) {
                             MostrarZombie(arr, j);
                         }
