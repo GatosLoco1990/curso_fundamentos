@@ -37,6 +37,8 @@ public class Principal {
                     arr[i] = new Zombie(nombre, salud, fenac, sang);
 
                     break;
+                case 2:
+                    break;
 
             }
         }
