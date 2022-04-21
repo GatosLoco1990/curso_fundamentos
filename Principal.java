@@ -1,7 +1,6 @@
 import clases.Ubicacion;
 import clases.Zombie;
 import java.util.Scanner;
-import java.util.Date;
 
 public class Principal {
     public static void main(String[] args) throws Exception {
@@ -22,8 +21,8 @@ public class Principal {
 
         Zombie[] arr = new Zombie[100];
         arr[0] = new Zombie("Ricardo", 12, "05/12/2004", "A+");
-        arr[1] = new Zombie("Laura", 56, "02/05/2003", "AB");
-        arr[2] = new Zombie("Samuel", 46, "12/11/2005", "O-");
+        arr[1] = new Zombie("Laura", 56, "18/02/2004", "AB");
+        arr[2] = new Zombie("Samuel", 46, "17/03/2005", "O+");
 
         Ubicacion[] ubi = new Ubicacion[100];
         ubi[0] = new Ubicacion("Cúcuta", 250, 500);
