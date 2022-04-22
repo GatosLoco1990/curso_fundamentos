@@ -1,6 +1,7 @@
 import clases.Ubicacion;
 import clases.Zombie;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Principal {
     public static void main(String[] args) throws Exception {
@@ -30,7 +31,7 @@ public class Principal {
         ubi[2] = new Ubicacion("Pamplona", 670, 4500);
 
         while (a == 0) {
-            System.out.println("Ingrese un dígito del 1 al 9");
+            System.out.println("Ingrese un dígito del 1 al 12");
             n = teclado.nextInt();
 
             switch (n) {
@@ -104,7 +105,7 @@ public class Principal {
                     }
                     break;
                 case 7:
-                    System.out.println("Ingrese el nombre, distancia y cantidad de zombies de le ubicación: ");
+                    System.out.println("Ingrese el nombre, distancia y cantidad de zombies de la ubicación: ");
                     System.out.println("Ingrese el nombre: ");
                     String nom = teclado.next();
                     System.out.println("Ingrese la distancia: ");
@@ -116,6 +117,40 @@ public class Principal {
                     k++;
                     BorrarPantalla();
                     break;
+                case 8:
+                    for (int j = 0; j <= i - 1; j++) {
+                        MostrarUbicaciones(ubi, j);
+                    }
+                    System.out.println("Digite cualquier cosa");
+                    nada = teclado.next();
+                    BorrarPantalla();
+                    break;
+                case 9:
+                    UbicacionMasSegura(ubi, k);
+                    System.out.println("Digite cualquier cosa");
+                    nada = teclado.next();
+                    BorrarPantalla();
+                    break;
+                case 10:
+                    ubicacionesMasCercanas(ubi);
+                    System.out.println("Digite cualquier cosa");
+                    nada = teclado.next();
+                    BorrarPantalla();
+                    break;
+                case 11:
+                    aleatoria();
+                    System.out.println("Digite cualquier cosa");
+                    nada = teclado.next();
+                    BorrarPantalla();
+                    break;
+
+                case 12:
+                    System.out.println("Ingrese posicion: ");
+                    String pos = teclado.next();
+                    System.out.println("Ingrese nombre : ");
+                    String nuevoNombre = teclado.next();
+                    cambiarNombre(arr, Integer.valueOf(pos), nuevoNombre);
+                    break;
 
             }
         }
@@ -124,18 +159,82 @@ public class Principal {
     }
 
     public static void MostrarZombie(Zombie[] arr, int j) {
-        System.out.println("El nombre del zombie [" + j + "] es: " + arr[j].getNombre());
-        System.out.println("La salud del zombie [" + j + "] es: " + arr[j].getSalud());
+        System.out.println(" El nombre del zombie [" + j + "] es: " + arr[j].getNombre());
+        System.out.println(" La salud del zombie [" + j + "] es: " + arr[j].getSalud());
         System.out
-                .println("La fecha de nacimiento del zombie [" + j + "] es: "
+                .println(" La fecha de nacimiento del zombie [" + j + "] es: "
                         + arr[j].getFecha_nac());
-        System.out.println("El tipo de sangre del zombie [" + j + "] es: " + arr[j].getTipo_sang());
+        System.out.println(" El tipo de sangre del zombie [" + j + "] es: " + arr[j].getTipo_sang());
         System.out.println("");
 
+    }
+
+    public static void MostrarUbicaciones(Ubicacion[] ubi, int i) {
+
+        System.out.println(" " + ubi[i].getNombre());
+        System.out.println(" " + String.valueOf(ubi[i].getDistancia()));
+        System.out.println(" " + String.valueOf(ubi[i].getCant()));
+        System.out.println(" ");
+
+    }
+
+    public static void UbicacionMasSegura(Ubicacion[] ubi, int k) {
+
+        int cantidadMenor = ubi[0].getCant();
+        String ubicacion = ubi[0].getNombre();
+
+        for (int i = 1; i <= k - 1; i++) {
+
+            if (cantidadMenor > ubi[i].getCant()) {
+                cantidadMenor = ubi[i].getCant();
+                ubicacion = ubi[i].getNombre();
+            }
+
+        }
+
+        System.out.println(
+                " la mas segura es  " + ubicacion + " tiene solo " + String.valueOf(cantidadMenor) + " zombies ");
+        System.out.println(" ");
+
+    }
+
+    public static void ubicacionesMasCercanas(Ubicacion[] ubicaciones) {
+
+        int n = ubicaciones.length;
+        int pos_menor;
+        Ubicacion temp;
+
+        for (int i = 1; i <= n - 1; i++) {
+            pos_menor = i;
+            for (int j = i + 1; j < n; j++) {
+                if (ubicaciones[j].getDistancia() < ubicaciones[pos_menor].getDistancia()) {
+                    pos_menor = j;
+                }
+            }
+
+            temp = ubicaciones[i];
+            ubicaciones[i] = ubicaciones[pos_menor];
+            ubicaciones[pos_menor] = temp;
+
+        }
+    }
+
+    public static void aleatoria() {
+        String frases[] = { "sucios", "feos", "peligrosos", "infectados", "putrefactos" };
+
+        Random random = new Random();
+        int n = random.nextInt(4);
+        System.out.println(frases[n]);
+        System.out.println("");
+    }
+
+    public static void cambiarNombre(Zombie[] zombies, int posicion, String nuevoNombre) {
+        zombies[posicion].setNombre(nuevoNombre);
     }
 
     public static void BorrarPantalla() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
 }
