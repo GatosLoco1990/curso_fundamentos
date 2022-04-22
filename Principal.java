@@ -78,6 +78,9 @@ public class Principal {
                             MostrarZombie(arr, j);
                         }
                     }
+                    System.out.println("Digite cualquier cosa");
+                    nada = teclado.next();
+                    BorrarPantalla();
 
                     break;
                 case 5:
@@ -97,6 +100,9 @@ public class Principal {
                         }
 
                     }
+                    System.out.println("Digite cualquier cosa");
+                    nada = teclado.next();
+                    BorrarPantalla();
 
                     break;
                 case 6:
@@ -118,7 +124,7 @@ public class Principal {
                     BorrarPantalla();
                     break;
                 case 8:
-                    for (int j = 0; j <= i - 1; j++) {
+                    for (int j = 0; j <= k - 1; j++) {
                         MostrarUbicaciones(ubi, j);
                     }
                     System.out.println("Digite cualquier cosa");
@@ -132,7 +138,7 @@ public class Principal {
                     BorrarPantalla();
                     break;
                 case 10:
-                    ubicacionesMasCercanas(ubi);
+                    ubicacionesMasCercanas(ubi, k);
                     System.out.println("Digite cualquier cosa");
                     nada = teclado.next();
                     BorrarPantalla();
@@ -172,8 +178,8 @@ public class Principal {
     public static void MostrarUbicaciones(Ubicacion[] ubi, int i) {
 
         System.out.println(" " + ubi[i].getNombre());
-        System.out.println(" " + String.valueOf(ubi[i].getDistancia()));
-        System.out.println(" " + String.valueOf(ubi[i].getCant()));
+        System.out.println(" Distancia: " + String.valueOf(ubi[i].getDistancia()));
+        System.out.println(" Cantidad: " + String.valueOf(ubi[i].getCant()));
         System.out.println(" ");
 
     }
@@ -198,25 +204,25 @@ public class Principal {
 
     }
 
-    public static void ubicacionesMasCercanas(Ubicacion[] ubicaciones) {
+    public static void ubicacionesMasCercanas(Ubicacion[] ubicaciones, int k) {
 
-        int n = ubicaciones.length;
-        int pos_menor;
+        int n = k;
         Ubicacion temp;
 
-        for (int i = 1; i <= n - 1; i++) {
-            pos_menor = i;
-            for (int j = i + 1; j < n; j++) {
-                if (ubicaciones[j].getDistancia() < ubicaciones[pos_menor].getDistancia()) {
-                    pos_menor = j;
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+
+                if (ubicaciones[j - 1].getDistancia() > ubicaciones[j].getDistancia()) {
+                    temp = ubicaciones[j - 1];
+                    ubicaciones[j - 1] = ubicaciones[j];
+                    ubicaciones[j] = temp;
                 }
             }
 
-            temp = ubicaciones[i];
-            ubicaciones[i] = ubicaciones[pos_menor];
-            ubicaciones[pos_menor] = temp;
-
         }
+        for (int i = 0; i < n; i++)
+            MostrarUbicaciones(ubicaciones, i);
+
     }
 
     public static void aleatoria() {
